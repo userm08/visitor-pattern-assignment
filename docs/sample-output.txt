@@ -1,0 +1,26 @@
+=== File system structure ===
+project/
+  README.md (1200 B)
+  src/
+    Main.java (2500 B)
+    Utils.java (1800 B)
+    model/
+      User.java (900 B)
+      Order.java (1400 B)
+  assets/
+    logo.png (15400 B)
+    banner.jpg (48200 B)
+  empty/
+
+=== SizeCalculatorVisitor ===
+Total size: 71400 bytes
+
+=== SearchVisitor: *.java ===
+project/src/Main.java
+project/src/Utils.java
+project/src/model/User.java
+project/src/model/Order.java
+
+=== SearchVisitor: size > 5000 B ===
+project/assets/logo.png
+project/assets/banner.jpg

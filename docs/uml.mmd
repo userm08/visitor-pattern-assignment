@@ -1,0 +1,47 @@
+classDiagram
+    direction TB
+    class Element {
+        <<interface>>
+        +getName() String
+        +accept(Visitor visitor)
+    }
+    class File {
+        -name: String
+        -sizeInBytes: long
+        +getSizeInBytes() long
+        +accept(Visitor visitor)
+    }
+    class Directory {
+        -name: String
+        -children: List~Element~
+        +add(Element child) Directory
+        +getChildren() List~Element~
+        +accept(Visitor visitor)
+    }
+    class Visitor {
+        <<interface>>
+        +visitFile(File file)
+        +visitDirectory(Directory directory)
+    }
+    class SizeCalculatorVisitor {
+        -totalSizeInBytes: long
+        +getTotalSizeInBytes() long
+    }
+    class SearchVisitor {
+        -criterion: Predicate~File~
+        -matchingPaths: List~String~
+        +getMatchingPaths() List~String~
+    }
+    class TreePrinterVisitor {
+        -output: StringBuilder
+        +getOutput() String
+    }
+    Element <|.. File
+    Element <|.. Directory
+    Directory o-- Element : children
+    Visitor <|.. SizeCalculatorVisitor
+    Visitor <|.. SearchVisitor
+    Visitor <|.. TreePrinterVisitor
+    Element ..> Visitor : accept(visitor)
+    Visitor ..> File : visitFile
+    Visitor ..> Directory : visitDirectory
